@@ -1,3 +1,6 @@
+# org mode, for blg59
+*.org
+
 # python
 *.pyc
 
