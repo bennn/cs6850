@@ -1,8 +1,8 @@
 all:
 	TEXINPUTS="./../sty/:" pdflatex reaction-paper
 	TEXINPUTS="./../sty/:" bibtex reaction-paper
-	TEXINPUTS="./../sty/:" bpdflatex reaction-paper
-	TEXINPUTS="./../sty/:" bpdflatex reaction-paper
+	TEXINPUTS="./../sty/:" pdflatex reaction-paper
+	TEXINPUTS="./../sty/:" pdflatex reaction-paper
 clean:
 	rm reaction-paper.aux
 	rm reaction-paper.log

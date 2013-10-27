@@ -19,41 +19,49 @@ CS6850: Reaction Paper
 \maketitle
 
 \section{Introduction}
-%% 2013-10-24 TODO needs review
 %% Introduce topic
-%% - herding y aherd
-Financial markets are commonly modeled as a set of independent actors who combine public and private information in order to make investments.
-A minimum of information sharing is expected, perhaps by analyzing an individual's past spending, but for the most part private information remains so.
+%% - what is herding
+Financial markets are commonly modeled by a set of independent actors who combine public and private information in order to make investments.
+Public information is, as the name suggest, available to all decision-makers and private information is unique to each.
+A minimum of information sharing is expected, perhaps inferred by analyzing an individual's past spending, but for the most part private information remains so.
 At no point does all private information become public, creating an even playing field where rational agents will make identical decisions.
 The market is always characterized by information asymmetries.
 
-Naturally, these models carry the assumption that individuals' choices are strongly guided by their private information.
+These models carry the assumption that individuals' choices are strongly guided by their private information.
 The publicly known data is what prevents them from making poor decisions, keeping them updated with how market action has changed the dynamics of the system.
-On the other hand private information gives investors an edge, helping them make a decision that is likely to succeed.
+Private information, on the other hand, gives investors an edge, helping them make a decision that is more likely to succeed against competing strategies.
 Wherever it applies, one expects players to make choices based upon their private data, rather than the publicly known information.
-At any rate, this is what a large number of investment models are based on\textemdash an assumption that rational participants are guided above all else by their private information.
+%% At any rate, this is what a large number of investment models are based on\textemdash an assumption that rational participants are guided above all else by their private information.
 %% Whenever an investor is observed to buy a stock that appears weak given the public information, one infers that their private information provided additional details.
 
 However, this assumption has been contradicted by empirical studies. 
-%% TODO cite sources
-Numerous studies, have confirmed that investors do not always act as individuals, guided by private information, but rather exhibit a tendency for collective action\cite[174]{cont-bouchad}.
+Numerous studies have found that investors do not always act as individuals, guided by private information, but rather exhibit a tendency for collective action.
 Investors, in practice, herd.
-They are influenced by the actions of other participants to the point of abandoning their private knowledge and converging on a single decision.
-%% Herd mentality takes control; individuals follow the crowd rather than their own information.
+Cont and Bouchad (1992) cite evidence of herding among fund managers and financial analysts in domestic markets \cite[174]{cont}.
+Bikhchandani and Sharma (2000) present similar evidence from data in emerging Eastern markets \cite{bikhchandani}.
+Herding, the phenomena where all or most actors in the market converge upon a single decision, occurs much more often than we might naively expect.
 
 Reasons for herding are myraid, and will not be discussed here.
-Additionally, we elide discussion of the outcomes of herding and of the circumstances in which herding becomes the optimal strategy.
-Rather, we concern ourselves with modeling herd behavior in investment markets.
+Additionally, we elide discussion of the outcomes of herding.
+The natural assumption is that herding is irrational, a poor strategy compared to using private information; however, there are a number of scenarios where herding becomes the optimal strategy.
+Here, we concern ourselves only with modeling herd behavior.
+Whether the decision was rational, profitable, or otherwise, is not important here.
+We only seek to identify whether a decision was the product of herding or not, and to predict when herding will guide other choices.
 In particular, we analyze the manner in which previous studies have characterized herding, note where they have succeed, and identify where they may be improved.
+Our focus is on the analysis of herding models.
 
 \section{Background}
 %% 
-Our approach in choosing papers to read for this topic was to find one established, canonical paper that has had a large influence on future works, and a newer paper offering strategies relevant today.
-From the former, we sought a decisive summary of the phenomena and problem, and an intuitive uncluttered model upon which to base theoretical results.
-The latter paper we hoped would summarize research up until the present, identify successes and failures, and show us the current state of the research.
-To this end we have read Cont and Bouchaud (2000), which is a well-cited work which presents the first model of herding based on a randomized graph, and Lin et. al. (2009), which provides a good critique of existing models and offers a suggestion for a new model addressing the demands of high-frequency trading networks.
-For additional background we have read Bikhchandani and Sharma (2001), which we reference where applicable.
-The two papers provide a nice constrast with one another, showing how the literature has evolved over time.
+Our approach in choosing papers to read for this topic was to find one established, canonical paper that has had a significant influence on future works, and a newer paper offering modern insight and a more refined model.
+From the former, we sought a summary of the phenomena and problem and an intuitive, uncluttered model upon which to test data.
+We hoped this model would give a simple measure on one or two dimensions, to provide firm ground on which to build more intricate experiments.
+Then from the latter paper, we wanted a more focused effort into solving a particular problem, to give an indication of which open questions remain pertinent today.
+We expected the model in the newer paper to be more intricate, better tailored to answering a particular question or analyzing a particular structure of market as opposed to the more general, canonical model.
+
+%% 2013-10-24: I think 'to this end' is much better, much less insulting than 'however', but let's figure out paper A before doing that shit.
+To this end we have read Cont and Bouchad (2000), which presents a simple randomized model for herding, and Boorz et. al. (2013), which critiques the current state of research and applies herding techniques to high-frequency data.
+%% To this end we have read Cont and Bouchaud (2000), which is a well-cited work which presents the first model of herding based on a randomized graph, and Lin et. al. (2009), which provides a good critique of existing models and offers a suggestion for a new model addressing the demands of high-frequency trading networks.
+For additional background we reference Bikhchandani and Sharma (2001), an IMF paper which summarized the phenomena and provided empirical data on herding in emerging markets, and a few other related works.
 
 %% Summarize sources
 %% - what's the main technical content
@@ -61,36 +69,140 @@ The two papers provide a nice constrast with one another, showing how the litera
 %% - what are some weaknesses of the papers, how can they be improved
 %% - what are some promising future questions, how could they be answered (what're we gonna do for research)
 \section{Review of Cont \& Bouchaud}
-hay 
+\subsection{Summary}
+Cont and Bouchad (2000) did not set out to study herding per se, but rather to explain a curious observation.
+Empirical data on the distributions of stock prices and returns had unexpectedly fat tails \cite{cont}.
+Although these tails were caused by large fluctuations in prices, but the cause of the fluctuations was unknown.
+Prior work by Cutler (1989) and Shiller (1989) had established that the arrival of information or variations in fundamental economic variables did not always relate to heavy-tailed distributions, which led the authors to hypothesize that herding might be a cause.
+Thus they developed a new herding model with the hope that its underlying distribution would match those found in the data.
 
-\subsubsection{Summary}
-\subsubsection{Relation to coursework}
-\subsubsection{Weaknesses}
-\subsubsection{Questions}
+Before presenting their model, the authors summarize previous models and how those models guided the present design.
+%% first set
+One problem they wanted to avoid was the assumption that decisions take place sequentially.
+A natural herding model, proposed by Bikhchandi (1992) has investors take turns making decisions based off the state of the market and competitors' past actions.
+While easy to understand, this type of model is not realistic. 
+Stock markets are not characterized by sequential actions.
+However, an earlier non-sequential model by Orl\`{e}an (1995) proved insufficient because it gave all players an equal likelihood of copying one another.
+Thus the authors' model addresses is not sequential and uses a randomized communication structure.
 
-\subsection{Review of Lin et. al.}
-\subsubsection{Summary}
-\subsubsection{Relation to coursework}
-\subsubsection{Weaknesses}
-\subsubsection{Questions}
+Another issue is the intricacy of the model.
+The authors critique earlier work by Bat (1997) for being too complex, for having so many parameters that determining causation was difficult and comparison against empirical data was overly tedious and had too many of failure \cite{cont}.
+Hence their model is simple and uncluttered: a set of $N$ agents choose to buy, sell, or hold a single asset.
+At the start of the simulation, agents are formed into groups by creating edges with probability $c/N$ for some connectivity parameter $c \in [0,1]$.
+These clusters are the herds for the rest of the simulation, which is then executed, logging returns throughout.
+
+%% implications of herding for for market demand + price fluctuations
+
+\subsection{Main Technical Content}
+The formalization of a randomized herding model and its corresponding analysis constitute the main technical content of this work.
+The authors identified problems with past approaches and addressed these in their model.
+The analysis presented here is detailed and comprehensive, offering convincing evidence that the model does indeed give heavy-tailed distributions much like those observed empirically.
+
+\subsection{Relation to coursework}
+This paper, indeed this topic, brings together a variety of topics from this course. 
+Concepts dealt with explicitly in this paper are random graphs and game-theoretic models.
+Indeed, what sets this model apart from its contemporaries is that it was randomized, which was ultimately a better technique for dealing with trading networks.
+Information cascades are addressed here as well, though they are not the core focus.
+It is assumed, at this point in the literature, that information cascades cause herding.
+This model challenges that assumption slightly by rejecting sequential models of herding, but it is not for another decade that the legitimacy of the search cascade hypothesis is seriously questioned \cite{lin}.
+
+\subsection{Weaknesses}
+%% This model does not take into account
+
+\subsection{Questions}
+
+
+\section{Review of Boortz et. al.}
+\subsection{Summary}
+  Boortz et. al. summarizes the recent efforts of a group of German researchers towards linking the empirical and theoretical perspectives of herding. 
+  Research on herding, they claim, has been divided for too long into two separate empirical and theoretical realms.
+  Theoreticians have developed models in line with the evolution of modern securities markets; as the pace and style of trading has changed, so have the models.
+  %% The resulting models focus on individual investor level herding in a tick-by-tick trading context \cite[2]{boortz}.
+  However, these models are not applicable to the corresponding empirical context.
+  %% Researchers seeking to run experiments suffer from a lack of market data.
+  %% Due to privacy restrictions, researchers often fail to acquire of accurate and substantial data, and instead opt for simulations.
+  The cause here is that researchers do not rigorously test the models against real data.
+  Why? Because they fail to obtain quality data.\footnote{
+    Certainly this was a problem we faced in writing this reaction piece. Data of poor quality was available for sale or signup, but high-quality, high-frequency data took a great deal of effort to acquire.
+  }
+  In fact the search for legitimate, detailed data is a pervasive issue.
+  Empirical studies occur wherever a fine source is found, but the majority have had to compensate by studying aggregates over relatively large blocks of time.
+  Depending on the data available, published results have developed from conclusions based on weekly or even yearly aggregates.\footnote{
+    Here ``aggregates'' should be taken to mean the window over which data are compared. 
+  }
+  Granted, this may be appropriate for slow moving, established markets, but it is certainly not accurate for high-frequency or emerging markets.
+  Markets in which millions of trades occur every second demand more granular measurements than by day or by week.
+  %% TODO should back this up more. More than just 'missing data, that's bad'
+  Thus we have one issue: that theoretical and practical results are not synchronized.
+
+  The authors seek to address this crucial discontinuity by giving theoretical and empirical results within the same paper.
+  First, they present a dynamic model for measuring the intensity of herding in a fast-paced market.
+  Next they run this model on simulated data and generate two hypotheses.
+  Finally, they test these hypothesis on up-to-date and relevant market data, recorded during the 2007 financial crisis and provided by the German Federal Financial Supervisory Authority \cite[3]{boortz}.
+  The output here is used to validate the hypothesis, and then the authors present their conclusions.
+
+\subsection{Main Technical Content}  
+  The definition and rigorous application of a herding measure for high-frequency data are the main contributions of this work.
+  Although their model is but a slight modification of one developed by Park and Sabourian (2007), using only a less restrictive definition of when herding has occurred, it is still a useful contribution.
+  This usefulness is affirmed in the model's application to the simulated and actual data: it developed two hypothesis which, when applied to market data, were found to describe the observations most of the time.
+
+\subsection{Herding Measure}  
+  Interestingly, the model used here is simple, operating on very few parameters. 
+  Only one asset is traded between buyers and sellers, and investors are either bucketed into two groups: informed and noisy \cite[5]{boortz}.
+  Noisy traders randomly buy a stock at each opportunity.
+  Informed traders make decisions based on the past and current state of the market, have the choice of buying or holding at each opportunity, and are evaluated against a few criteria to determine whether they have exhibited herd behavior.
+  We repeat here the criterion for a trader to herd as a buyer:
+  \begin{itemize}
+  \item 
+    The trader is informed
+  \item
+    The trader chooses to buy at the current time
+  \item 
+    The trader either sold or did not act at the previous time
+  \item 
+    The number of buyers currently in the market exceeds the number of sellers (informed or otherwise)
+  \end{itemize}
+  Yet the usefulness and applicability of the model stems from its simplicity. 
+  As noted in the authors' introduction, theoretical models had become advanced and multi-faceted, but in doing so had grown apart from contemporary empirical work.
+
+\subsection{Relation to coursework}
+  %% Information cascades
+  %% Randomized parameters
+  %% TODO fell asleep
+  Like the previous work, this paper discusses information cascades, simple game theoretic models, and randomized networks.
+  These concepts join to create a model suitable for analying complex, real-world transactions.
+
+\subsection{Weaknesses}
+
+
+\subsection{Questions}
 
 \section{Proposal}
 %% Give a proposal for a model, or a new algorithm. Can extend / vary something from papers
 
 High-frequency trading is a relatively new phenomena, but has revolutionized financial markets. 
-Since its emergence in XXXX, 
+Since its emergence during the last decade, high-frequency trading has revolutionized commodities markets.
+The modern trading floor is much different from the one analyzed by Cont and Bouchad.
+To this end, we need a new model of herding corresponding to the new model of transactions.
+We list the following criteria for herding models:
+\begin{itemize}
+\item 
+  idk
+\item 
+  ???
+\end{itemize}
+%% TODO fill in criteria
+Note that the Boortz model fails TODO, and Cont and Bouchad model fails TODO.
 
-We are interested in seeing how trading algorithms are affected by herding, and in providing a suitable model for this economy.
-
-\section{Analysis}
-%% Test of a model or algorithm. Our own or something from papers, done on dataset or simulated data
-\subsection{Goals}
-\subsection{Dataset}
-\subsection{Measure}
-%% A good measure should depend on the data.
-%% Maybe not 'be developed with this specific input in mind', 
-%% but at least have variables contingent on the data
-\subsection{Results}
+%% \section{Analysis}
+%% %% Test of a model or algorithm. Our own or something from papers, done on dataset or simulated data
+%% \subsection{Goals}
+%% \subsection{Dataset}
+%% \subsection{Measure}
+%% %% A good measure should depend on the data.
+%% %% Maybe not 'be developed with this specific input in mind', 
+%% %% but at least have variables contingent on the data
+%% \subsection{Results}
 
 \section{Discussion}
 %% 2013-10-24: I am happy. Maybe cut this whole thing later but for now I am happy.
@@ -113,6 +225,11 @@ This is a naive investment strategy, subject to gaming and easily misled, but ma
 %% Summarize papers again
 %% Summarize our thoughts, our contribution
 %% Lay out future work
+We have identified the topic of herding behavior in financial markets as a subject of interest, read a number of papers concerning this phenomena, and presented our findings and extensions here.
+In particular, we summarized Cont and Bouchad (2000), which provided a highly influential randomized model of commodities markets where herding occurs, and Boortz et. al., which sought to reconcile the research to date via a straightforward model tested on high-frequency data.
+What remains to be done, in our opinion, is to test a more intricate model on high-frequency data.
+Hence a possible avenue for our future research is to acquire high-frequency transaction data and run a new model on it.
+%% An alternative is to reconsider the entire approach towards mesauring herding, but that is a little ambitious
 
 \bibliographystyle{amsplain}
 \bibliography{reaction-paper}
