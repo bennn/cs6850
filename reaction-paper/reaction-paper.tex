@@ -28,35 +28,25 @@ At no point does all private information become public, creating an even playing
 The market is always characterized by information asymmetries.
 
 These models carry the assumption that individuals' choices are strongly guided by their private information.
-The publicly known data is what prevents them from making poor decisions, keeping them updated with how market action has changed the dynamics of the system.
-Private information, on the other hand, gives investors an edge, helping them make a decision that is more likely to succeed against competing strategies.
-Wherever it applies, one expects players to make choices based upon their private data, rather than the publicly known information.
-%% At any rate, this is what a large number of investment models are based on\textemdash an assumption that rational participants are guided above all else by their private information.
-%% Whenever an investor is observed to buy a stock that appears weak given the public information, one infers that their private information provided additional details.
-
-However, this assumption has been contradicted by empirical studies. 
+However, this assumption has been contradicted by empirical findings. 
 Numerous studies have found that investors do not always act as individuals, guided by private information, but rather exhibit a tendency for collective action.
-Investors, in practice, herd.
+Investors, in practice, often act as a herd.
 Cont and Bouchad (1992) cite evidence of herding among fund managers and financial analysts in domestic markets \cite[174]{cont}.
 Bikhchandani and Sharma (2000) present similar evidence from data in emerging Eastern markets \cite{bikhchandani}.
 Herding, the phenomena where all or most actors in the market converge upon a single decision, occurs much more often than we might naively expect.
 
-Reasons for herding are myraid, and will not be discussed in great depth here.
+Reasons for herding are myriad, and will not be discussed in great depth here.
 A great many psychological and economic factors might influence an individual trader's decision to herd. 
 Rather than enumerate these we present only what is necessary to understand the models.
-Additionally, we will not focus on the outcomes of herding.
-The natural assumption is that herding is irrational, a poor strategy compared to using private information, which individuals are drawn towards in spite of its less-than-optimal returns.
-However, there are scenarios which we shall present later where herding becomes the optimal strategy.
+Additionally, we do not focus on the outcomes of herding.
+The natural assumption is that herding is irrational, a poor strategy compared to using private information; however, there are a number of cases where herding is the optimal strategy.
 
-%% TODO 2013-10-27 not entirely happy
 Our primary concern is modeling herd behavior.
 The motivation for herding and the consequent outcome are only important insofar as they dictate the constraints of accurate models.
-We seek to identify whether a decision was the product of herding or not, and to predict when herding will guide other choices.
-Sections 3 and 4 of this paper analyze the models presented in two prior studies on herding, noting where they have succeeded and where they have fallen short. 
-Section 5 summarizes our ideas for future work and section 6 presents a small analytical example.
+We seek to identify whether certain decisions are the product of herding or not, and to predict when herding will guide other choices.
+Sections 2 and 3 analyze the models presented in two prior studies on herding, noting where they have succeeded and where they have fallen short. 
+Section 4 summarizes our ideas for future work and section 5 presents a small analytical example.
 
-\section{Background}
-%% 
 Our approach in choosing papers to read for this topic was to find one established, canonical paper that has had a significant influence on future works, and a newer paper offering modern insight and a more refined model.
 From the former, we sought a summary of the phenomena and problem and an intuitive, uncluttered model upon which to test data.
 We hoped this model would give a simple measure on one or two dimensions, to provide firm ground on which to build more intricate experiments.
@@ -153,7 +143,6 @@ Of course, this hypothesis would have to be tested against the current model on 
   }
   Granted, this may be appropriate for slow moving, established markets, but it is certainly not accurate for high-frequency or emerging markets.
   Markets in which millions of trades occur every second demand more granular measurements than by day or by week.
-  %% TODO should back this up more. More than just 'missing data, that's bad'
   Thus we have one issue: that theoretical and practical results are not synchronized.
 
   The authors seek to address this discontinuity by giving theoretical and empirical results within the same paper.
@@ -168,8 +157,7 @@ Of course, this hypothesis would have to be tested against the current model on 
   Only one asset is traded between buyers and sellers, and investors are either bucketed into two groups: informed and noisy \cite[5]{boortz}.
   Noisy traders randomly buy a stock at each opportunity.
   Informed traders make decisions based on the past and current state of the market, have the choice of buying or holding at each opportunity, and are evaluated against a few criteria to determine whether they have exhibited herd behavior.
-  We repeat here the criterion for a trader to herd as a buyer.
-  The conditions for sellers are analogous.
+  The folowing criteria describe when a trader exhibits buying heard behavior (there are symmetric conditions for seller hearding).
   \begin{itemize}
   \item 
     The trader is informed
@@ -188,6 +176,10 @@ Of course, this hypothesis would have to be tested against the current model on 
 \subsection{Main Technical Content}  
   The definition and rigorous application of a herding measure for high-frequency data are the main contributions of this work.
   Although their model is but a slight modification of one developed by Park and Sabourian (2007), using only a less restrictive definition of when herding has occurred, it is still a useful contribution.
+  What makes this model particularly useful for analyzing high frequency data is its dynamic nature.
+  It measures the correlation between traders' purchasing behavior in discrete time steps, rather than all at once after synthesizing all the data.
+  Additionally, this measure differentiates between traders who follow others and who follow themselves, taking advantages of the investor-specific information available to the authors \cite{boortz}. 
+  
   This usefulness is affirmed in the model's application to the simulated and actual data.
   Indeed, the analysis is itself a significant technical contribution.
   This paper presents a model for how future ideas ought to be presented: first develop a model, then test it on simulated data, finally run it on live data.
@@ -196,52 +188,106 @@ Of course, this hypothesis would have to be tested against the current model on 
 \subsection{Relation to coursework}
   %% Information cascades
   %% Randomized parameters
-  Like the previous work, this paper discusses information cascades, simple game theoretic models, and randomized networks.
-  While they do not incorporate all these dimensions into their model, the authors do mention them as opportunities for expansion.
+  Like Cont and Bouchaud, this paper discusses information cascades, simple game theoretic models, and randomized networks.
+  While they do not incorporate all these dimensions directly into their model, the authors do mention them as opportunities for expansion.
   The parameters they do focus on are market stress and information risk, both of which are directly linked to the phenomena of information cascades \cite{boortz}.
   
-  We also note that this paper relates to ideas in the coursework tangentially, in its approach to solving the problem.
-  Rather than diving in and trying to encompass all facets of the problem in their model, the authors scale back their approach, identify a few key parameters of interest, and test those in isolation.
-  This is very similar to the approaches we have taken thus far in studying smallworld properties, expanders, and information cascades: begin with a small, easily comprehensible model and add more parameters in a data-directed manner.
-  As students, we have found this method very useful and enlightening.
+  Increased market stress, according to the authors, is associated with greater buyer uncertainty and a generally pessimistic economic outlook.
+  The authors make inferences about market stress by analyzing data before and during the economic crisis. 
+  They assume market stress to be contagious, and to spread quickly through the market as news travels through public channels.
+  
+  Information risk denotes the likelihood one is trading with a party that has private information regarding the assert.
+  This parameter models the expected returns of herding; if your competitors have access to priviledged information, you can expect to do better following their lead instead of guessing blindly.
+  When it rises, the authors expect traders to herd together in order to minimize their risk. 
+
 
 \subsection{Weaknesses and open questions}
 
-TODO talk about the psychological dimension
-Bikhchandani and Sharma compare different types of herding. 
-Reputation-based herding: uncertain about managers capability => herd, following other managers
-Compensation-based herding: worried about personal returns. 
+Unlike previous works on herding, this paper dealt exclusively with high-frequency data. 
+High-frequency trading systems are interesting in that they are not driven by humans, who are subject to emotions and stress, but rather by machines executing trading algorithms. 
+This raises an interesting question, which the paper authors did not fully address.
+Prior work treated herding as a psychological effect, made possible by human fear and a desire to combat uncertaintly. 
+Herding was considered an irrational decision, an instinctual drive to ignore private data which nearly always led to inferior results. 
+Bikhchandani and Sharma (2001) talked specifically about reputation-based and compensation-based motivations for herding. 
+The former refers to how much trust traders have in their fund manager is; the latter describes the individual tendency to herd when their income is based on their ability to avoid failure \cite{bikhchandani}.
+Both are specifically human phenomena.
+Now we have trading machines, which feel none of the emotion or fear human traders did. 
+Yet herding still exists\textemdash despite being immune to the hypothesized causes of herding, machines exhibit the same, supposedly poor judgement.
+Hence there must be benefits to herding, at least, much more than early research gave it credit. 
 
+More recent works have understood that herding becomes the rational choice in some cases. 
+Boorz et. al. recognize that herding is a viable strategy to deal with information asymmetries or to minimize losses \cite{boortz}.
+Lin et. al. found that herding increased in times of abundance, much like how stock bubbles form and grow \cite{lin}.
+However, there is not yet a satisfactory explanation for when herding occurs in high-frequency markets.
+If machines are making the trades, then there must be observable parameters that indicate when to lead and follow.
+These measures are already encoded in the algorithm's logic. 
+Yet the paper which brings together and generalizes these criteria apparently has yet to be written.
 
 \section{Proposal}
 %% Give a proposal for a model, or a new algorithm. Can extend / vary something from papers
 
-High-frequency trading is a relatively new phenomena, but has revolutionized financial markets. 
-Since its emergence during the last decade, high-frequency trading has revolutionized commodities markets.
+High-frequency trading (HFT) is a relatively new phenomena, but has revolutionized financial markets.
 The modern trading floor is much different from the one analyzed by Cont and Bouchad.
 To this end, we need a new model of herding corresponding to the new model of transactions.
-We list the following criteria for herding models:
-\begin{itemize}
-\item 
-  TODO
-\end{itemize}
+Boortz et. al. provided a solid foundation for analyzing HFT data, but their model is relatively simplistic. 
+More detailed, more focused models should be experimented with.
+Taking the same approach outlined by Boortz et. al., we seek to introduce a new model for analyzing herd behavior and apply it to high frequency data. 
 
-We'd like to add random techniques to the model of Boortz et. al.
-%% TODO fill in criteria
-%% Note that the Boortz model fails TODO, and Cont and Bouchad model fails TODO.
+In developing the our new model, we hope to modify the existing model, first proposed by Park and Sabourian (2011), by introducing a randomized parameter.
+Some possible avenues for exploration include modifying the signals for informed traders, changing the algorithm for noise traders, pre-assigning groups in the same manner as Cont and Bouchaud, and adding ``herd'' traders who always follow the crowd regardless of their signal or other historical data.
 
+\section{Analysis}
+As a preliminary experiment, we ran a simulation inspired by Boortz et. al. but with a randomized signal structure.
+We created the same premises as their simulation for testing the effects of information risk, namely, a pool of traders who are partitioned based on parameter $\mu$ into informed and noise traders, and a series of stocks which assume one of three possible values.
+Using the same noise trader behavior and herding condition, we simulated trading for each stock over 100 time steps.
+The difference we introduced was that traders, rather than working with one private signal determined at the start of the simulation, received a new, randomized signal before making each trade.
+This modification represents a primitive means of accounting for dynamic private information and trading algorithms. 
+Later, we will refine this perturbation; for now, we simply experiment to see how the outcomes are affected if traders are given slightly more autonomy.
 
-%% \section{Analysis}
-%% %% Test of a model or algorithm. Our own or something from papers, done on dataset or simulated data
-%% \subsection{Goals}
-%% \subsection{Dataset}
-%% \subsection{Measure}
-%% %% A good measure should depend on the data.
-%% %% Maybe not 'be developed with this specific input in mind', 
-%% %% but at least have variables contingent on the data
-%% \subsection{Results}
+\begin{figure}
+  \begin{minipage}{0.5\textwidth}
+    \begin{flushleft}
+      \includegraphics[width=\textwidth]{buyherd.png}
+    \end{flushleft}
+  \end{minipage}
+  \begin{minipage}{0.5\textwidth}
+    \begin{flushright}
+      \includegraphics[width=\textwidth]{sellherd.png}
+    \end{flushright}
+  \end{minipage}
+  \caption{Buy \& Sell herding using randomized signals}
+\end{figure}
+
+Figure 1 shows our results. 
+Interestingly, we generated a uniform distribution of herding. 
+The randomization was apparently enough to completely mitigate the effects of information risk on herding.
+To some extent, this follows intuition: if private information is not predicatable, and varies in usefulness across time steps, then traders will be less likely to both ignore their own private information and to trust what is given to others.
+That said, we did not run this simulation on nearly as many trials as Boortz et. al. did, nor did we use as many traders as they presumably used. 
+However, it is still curious, and worth further investigation, that we find no evidence of the linear increase observed by the authors.
+
+\subsection{Future Plans}
+This simlation is only a first step.
+We intend to run a more sophisticated model on real data.
+Here we describe our plan for acquiring this data, a task which has proven suprisingly difficult.
+
+We plan to acquire data either directly from the Chicago Mercantile Exchange (CME), or use the Interactive Brokers API for building our own dataset from market snapshot updates.
+Interactive Brokers permits users to query for present data, but it does not offer historical datasets. 
+Therefore we can build our own by plugging in to the API and gathering data over the course of the next month.
+
+Our target market is the Forex market, specifically the top three most actively traded currency pairs: EUR/USD, USD/JPY, and GBP/USD.
+We will look for market depth data, also known as L2 data, which will provide us the best bid/ask spreads, and also the 2nd, and 3rd price levels on both the buy and sell side.
+Active traders have access to L2 market data, which means they have the ability to see when buyers or sellers are moving in some direction prior to the price movement by observing the change in the quantity at lower levels of the bid/ask book.
+This public information is something traders can use when choosing whether to herd.
+
+%% Talk about the graphs. The almgren graphs
+Our analysis will plot the top bid and ask numbers, as well as a price-weighted average for the entire market available to us. 
+We hope to find trends in the weighted average that influence the top prices. 
+Trends in the weighted average should grow stronger in the presences of herding, driving the top numbers towards the trend.
+We suspect that trading algorithms will take advantage of herd behavior to influence the price trend towards their goal, whether it be buying or selling.
+In other words, we believe the algorithms will attempt to join and build a herd in order to maximize their objective.
 
 \section{Discussion}
+\subsection{Rationality of herding}
 %% 2013-10-24: I am happy. Maybe cut this whole thing later but for now I am happy.
 We have thus far considered herding the irrational, or at least unexpected behavior, assuming that investors follow their private information as the norm and degenerate into the herd mentality in exenuating circumstances.
 Indeed, this is the the viewpoint contemporary models have embraced: herding is measured as deviation from some expected investment strategy, identified by similarity across different parties. 
@@ -257,16 +303,32 @@ A contrary model, which instead of tracking similarity measures differences betw
 Assuming that investors follow the public information and each others' decisions exclusively might permit us to draw conclusions about the influence or extent of participants' private information.
 This is a naive investment strategy, subject to gaming and easily misled, but may in fact be a better generalization for how investors function in practice.
 
+\subsection{Analyzing automatic traders}
+%% about how we wish we could pin down the algorithm's criteria for choosing to her
+Earlier, we expressed a desire to identify when trading algorithms choose to herd.
+At first glance, this seems to be a feasible goal, and a possible topic for our full research paper. 
+Indeed, we are interested in pursuing this topic, in analyzing algorithm performance on over time and making generalizations based on the conditions at the points when the various algorithms herded. 
+If the automated traders are in fact following routines and not making randomized, noisy trades, then there must exist clear conditions where herding is beneficial, or at least conditions where an algorithm might perceive herding as the optimal strategy.
+However, we cannot pursue this topic without a sufficient dataset.
+We would need historical, high-frequency data (ticks every millisecond, at least) indicating price, quantity, and buyer in an active market. 
+
+Unfortunately, data is what we are and have been lacking. 
+Finding a single set of data, even anonymous data with ticks every second or less frequent, has been extremely difficult. 
+Rather than continue to pursue what has been a disappointing and relatively fruitless endeavor, we will instead work to find a single dataset upon which we can test a herding model. 
+Analysis of herding conditions for common (or rather, successful) algorithmic trading strategies must be delayed.
 
 \section{Conclusion}
 %% Summarize papers again
 %% Summarize our thoughts, our contribution
 %% Lay out future work
-We have identified the topic of herding behavior in financial markets as a subject of interest, read a number of papers concerning this phenomena, and presented our findings and extensions here.
-In particular, we summarized Cont and Bouchad (2000), which provided a highly influential randomized model of commodities markets where herding occurs, and Boortz et. al., which sought to reconcile the research to date via a straightforward model tested on high-frequency data.
-What remains to be done, in our opinion, is to test a more intricate model on high-frequency data.
-Hence a possible avenue for our future research is to acquire high-frequency transaction data and run a new model on it.
-%% An alternative is to reconsider the entire approach towards mesauring herding, but that is a little ambitious
+We have identified the topic of herding behavior in financial markets as a subject of interest, read a number of papers concerning this phenomena, and presented our reactions and open questions here.
+In particular, we summarized Cont and Bouchad (2000), which provided a highly influential randomized model of commodities markets where herding occurs, and Boortz et. al., which sought to reconcile the theory and experimental results to date via a straightforward model tested on high-frequency data from the economic crisis.
+Both works presented unique contributions to the field, taking a novel approach to the question. 
+Yet herding is far from an explained phenomena.
+The most pressing question, in our opinion, is to test a more intricate model on similar high-frequency data.
+Hence a compelling avenue for our future research is to acquire high-frequency transaction data and run a new model on it.
+We hope to explore this question in our main project.
+ that is a little ambitious
 
 \bibliographystyle{amsplain}
 \bibliography{reaction-paper}
