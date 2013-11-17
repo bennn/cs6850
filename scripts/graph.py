@@ -11,7 +11,7 @@ class LineGraph:
     
     def __init__(self):
         self.graph = pyplot
-        self.graph.axis([0, 700000, 0, 1.4])
+        # self.graph.axis([0, 700000, 0, 1.4])
         # self.colors = ["r", "b", "g", ...]
         self.nextColor = 0
 
