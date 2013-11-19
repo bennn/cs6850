@@ -1,0 +1,40 @@
+\documentclass{article}
+
+\input{package}
+\input{def}
+
+\renewcommand\maketitle{
+\begin{flushleft}
+{%
+\large{%
+Benjamin Greenman,
+Hersh Mehta
+\hfill
+CS6850: Final Paper
+\\\texttt{\{blg59, hpm36\}} \hfill \today
+}}\\
+\hrulefill
+\end{flushleft}
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\input{abstract}
+\end{abstract}
+
+\input{introduction}
+\input{background}
+\input{observations}
+\input{model}
+\input{simulation}
+\input{experiment}
+\input{evaluation}
+\input{related-work}
+\input{conclusion}
+
+\bibliographystyle{amsplain}
+\bibliography{final}
+
+\end{document}
