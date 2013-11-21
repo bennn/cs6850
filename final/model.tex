@@ -1,3 +1,33 @@
 \section{Model}
 \label{model}
 %% Our herding model, explanation of components
+
+%% We like their use of three values. It makes sense because signals have to be U-shaped to herd
+%% We almost like their herding criteria
+%% - keeping the 'do what you didn't do at original time', because it makes sense that private signals don't change so much over the day
+%%   we are working with short timesteps here, so we will keep the private signals
+%% - so then first condition is `did X initially'. Second condition is `did Y'
+%% - Third condition is that market herds. We change our conception of this. 
+%%   (I don't quite agree here. I think the old one--most transactions are X--is fine)
+%%   We have a super-additive function that determines when the price-weighted buys/sells tend towards buy or sell
+
+%% Goal is for our model to predict the herding clearly visible in the simulated or experimental graphs.
+%% - not certain how this works with simulated graphs
+
+Here we describe the parameters we have added to and altered within the existing model.
+
+\subsection{Types of Traders}
+\todo{will have informed and ??? traders. Want to replace noise traders.}
+
+%% TODO we need a function
+\subsection{Volume-Rated Herding Measure}
+
+
+\subsection{Herding Measure}
+These defined, we present our definition of herding. 
+A buyer $B$ is said to herd in time $t$ if:
+\begin{itemize}
+\item He eats nachos.
+\item Wears sunglasses and a pink shirt.\footnote{Unless it's a Saturday, in which case the shirt must be cyan.}
+\item Says `bro' 3 or more times in one sentence ever.
+\end{itemize}
