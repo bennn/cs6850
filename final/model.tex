@@ -11,6 +11,14 @@
 %%   (I don't quite agree here. I think the old one--most transactions are X--is fine)
 %%   We have a super-additive function that determines when the price-weighted buys/sells tend towards buy or sell
 
+%% Volume as deviation from the market volume. There's a volume for the market (mean + deviation)
+%% There's also the volume for this trade, which deviates from the regular volume by some value.
+%% - Normalize weights a bit. We don't care much about points real close to the mean. Can ignore a band right around there.
+
+%% FUNCTION 1: d = (v - vAvg); if (d > \epsilon) { dev = 1 + d^2 } else { dev = 1 } return dev
+%% ### Only account for deviation if the value is over some epsilon
+%% FUNCTION 2: 
+
 %% Goal is for our model to predict the herding clearly visible in the simulated or experimental graphs.
 %% - not certain how this works with simulated graphs
 
