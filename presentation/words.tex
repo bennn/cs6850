@@ -1,0 +1,68 @@
+% Created 2013-12-01 Sun 21:53
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\tolerance=1000
+\providecommand{\alert}[1]{\textbf{#1}}
+
+\title{words}
+\author{λ}
+\date{\today}
+\hypersetup{
+  pdfkeywords={},
+  pdfsubject={},
+  pdfcreator={Emacs Org-mode version 7.8.11}}
+
+\begin{document}
+
+%% \maketitle
+
+%% \setcounter{tocdepth}{3}
+%% \tableofcontents
+%% \vspace*{1cm}
+\section{Title}
+\label{sec-1}
+\begin{description}
+  \item[Ben:] Hi I'm Ben this is Hersh and we've been studying Herd Behavior in Financial Markets
+\end{description}
+\section{Overview}
+\label{sec-2}
+\begin{description}
+  \item[Ben:] So first, what is herding? Herding is when investors ignore their private information and instead trade based on what the crowd does.
+       That is, instead of using some private signal about what a stock is worth, they instead base their actions off what market competitors are doing.
+  \item[Ben:] There are a number of suggested reasons for why this happens, for example to minimize risk or to supplement poor or missing private information.
+       One instance might be a trader whose compensation is tied to his performance on the floor. Rather than taking risks, he buys safely, with the crowd, where the likelihood of big losses is minimized.
+  \item[Hersh:] Herding is relevant in a variety of ways. Recent stock bubbles and crashes were the result of herd behavior, and smaller example of herding occur on a daily basis.
+         (add another sentence?)
+  \item[Ben:] There exists a fair amount of work studying herding as a phenomenon in traditional, human-driven markets.
+       On one hand there are the papers which give evidence that herding exists in some targeted market and attempt to explain why, and other works give a mathematical model explaining and predicting herd behavior.
+       These models have focused on, for example, the heavy tails characteristic of herding and the importance of private signals or proportion of informed traders.
+       However they do not really apply modern HFT markets, which leads to our contribution
+\end{description}
+\section{Our contribution}
+\label{sec-3}
+\begin{description}
+  \item[Hersh:] We want to study herding in the context of high-frequency markets, where the trading is done primarily by algorithms.
+         These are not subject to the same incentives or emotions as human traders, yet still exhibit herd behavior.
+         You can imagine why--it makes sense to leverage others' actions as a source of public information--but there's a lack of formalism about these intuitions.
+  \item[Hersh:] Additionally, we think that previous herding models have fallen short by not using trade volume as a major predictor for herding.
+         If a buyer purchases a larger-than-normal quantity of one stock, we expect other traders to be more influenced by this action--more likely to herd in that direction.
+         So we are developing a new model to account for this.
+  \item[Ben:] For data, we have been using the Interactive Broker API. 
+       Over the past few weeks we've been scraping their data, which gives us prices and quantities updated every 5ms or so.
+       Graphing the best bid and ask along with the price-weighted average of all trades, we expect to see the market average shift in the direction of high-volume trades.
+\end{description}
+\end{document}
