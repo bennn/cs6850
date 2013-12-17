@@ -1,19 +1,108 @@
 \section{Background}
 \label{background}
 
-\subsection{High-Frequency Trading}
+%% Formal definition of herding
+%% Evidence papers, who's seen herding happen
+Herding, as previously defined, is when traders ignore their private information and instead buy as a crowd.
+This is a fairly well-known and well-documented phenomena, particularly in traditional (pre-HFT) financial markets, and we recount some of the relevant literature here.
 
-\subsection{Herd Behavior in Commodities Markets}
+For the most part, works on herding can be put into one of two categories. 
+Either they give an example of herding, identifying and giving reason for an observed behavior, or they present a theoretical model seeking to characterize herd behavior.
+We use this apparent split to guide our discussion, considering first the works that establish herding as a real phenomena and second the more academic hypotheses and conjectures that have stemmed from thought on herding.
+However, we make an exception for one notable model, the VPIN model of O'Hara, Easley, and Lop\`ez de Prado. 
+This model is particularly influential for our work and how we interpret the data, so we give it special attention here. 
 
-\subsection{Previous Models}
-\subsubsection{Cont \& Bouchaud}
-These guys are probably not worth mentioning.
+\subsection{Evidence of Herding}
+%% TODO
+Many papers in recent memory document the existence of herd behavior in traditional financial markets.
+%% scharfstein1990herd
+The earliest we know of is Shiller \& Pound (1987).
+They conducted a survey of institutional investors, seeking to determine the influence of direct, personal communications on their decisions~\cite{shiller1989survey}.
+Results strongly indicated that investors follow one anothers' lead, which ultimately led to the realization that they were acting as a herd.
+Scharfstein \& Stein (1990) explore herd behavior among firm managers, providing both rationale and an explanatory model~\cite[3]{scharfstein1990herd}.
+They also connect their model to stock markets, arguing that the financial sector as another location where their insights apply.
+Grinblatt, Titman, \& Wermers studied mutual funds for evidence of herding and found that a large number of investors are momentum buyers/sellers; that is, they buy past winners and sell past losers~\cite{grinblatt1995momentum}.
+This behavior is significant because it means the entire space of traders eventually converge on the same set of winners and losers.
+Lakonishok, Shleifer, and Vishny (1991) continue this line of reasoning in their exploration of herd behavior among tax-exempt funds~\cite{lakonishok1992impact}.
+Other examples include Trueman's study of herd behavior among analysts~\cite{trueman1994analyst}, Golec's observations on herding~\cite{golec1997herding}, and Sias's (2004) study of institutional herding~\cite{sias2004institutional}.
+%% Devenow \& Welch's 
+The most recent example we encountered is that of Lin, Tsai, and Sun (2009), which examines herd behavior within the emerging Taiwanese market~\cite{lin}.
 
-\subsubsection{Park \& Sabourian}
-%% TODO how they proved U-shape
+In summary, there is a large body of evidence that herding is a widespread phenomena among human traders, and a small but growing pool of work noting herd behavior in HFT data.
 
-\subsubsection{Boortz et~al.}
-%% TODO herding model
+\subsection{Theoretical Models}
+
+%% \subsubsection{Cont \& Bouchaud}
+%% %% Heavy-tailed distributions
+%% \subsubsection{Park \& Sabourian}
+%% %% TODO how they proved U-shape
+%% \subsubsection{Lin, Tsai, Sun}
+%% %% 2013-12-13: these are personal notes, not certain how to incorporate
+%% %%             prettymuch that there are non-human reasons to herd..
+%% \subsubsection{Boortz et~al.}
+%% %% TODO herding model
+On the theoretical side, we have a variety of models that seek to capture the essence of herd behavior.
+An early, na\"ive model is that of Bikhchandi (1992), which gave the simplest effective model of herding~\cite{bikhchandani1992theory}.
+They have investors enter the market one-by-one, in turn making decisions of whether to buy, sell, or hold based on their private signal, competitors' actions, and the transaction history.
+Building upon this model, Orl\`{e}an (1995) provided an asynchronous simulated market~\cite{orlean1995}.
+However, they gave all players an equal likelihood of copying one another, a misgiving which was corrected by Cont \& Bouchad (2000)~\cite{cont}.
+%% Bak, Paczuski, \& Shubik (1997) give a detailed and complex model for stock markets with many agents, furthermore accounting for the non-Gaussian statistics that appear in the presence of herding, but this model was arguably too parameterized and complex to be readily applied to experiments~\cite{bak1997price}. 
+
+Models dealing with HFT data specifically include that of Park \& Sabourian (2011) and Bootrz et~al. (2012)~\cite{park2011herding,boortz}.
+These focus on the transactions surrounding a single stock over time.
+Traders receive a private signal in the beginning of the simulation and the model observes whether they change from buying to selling (or vice-versa) at a later point in time.
+This model is of special interest to us as we conduct our study of HFT data, and we recall the lessons of Boortz et~al. as we study our own dataset.
+
+\subsection{VPIN}
+The Volume Synchronized Probability of Informed Trading (VPIN) model, invented by O'Hara, Easley, and Lop\`ez de Prado, is a measure of the relative liquidity in a market~\cite{vpin}.
+Designed to inform market makers in an HFT setting, the model gives a measure of how likely it is that informed trading is occurring within the market.
+This helps the market maker identify when it is providing liquidity at a loss. 
+
+VPIN builds off a previous model, the PIN, by bucketing actions by volume. 
+This is appropriate for high-frequency data, where a standard timestep no longer provides an accurate characterization of the market.
+Over the course of one second, a vast number of trades might take place.
+Or, depending on the time of day, extremely few trades might occur\textemdash HFT makes the frequency unpredictable.
+Choosing to group by volume ensures a stable unit of measure and moreover is not dependent on non-observable parameters and updates in stochastic time~\cite[4]{vpin}.
+
+This model is essential to our analysis in Section \ref{experiment}, and so we recount it briefly here. 
+In particular, we are concerned, in our experiment, with predicting price movements for the purpose of tracking herd behavior. 
+Using the VPIN metric gives a solid theoretical foundation upon which we can base our own inferences and conjectures.
+
+Trades occur in the market over a period of time intervals; at each interval, traders arrive according to some Poisson process and an information event occurs with probability $\alpha$.\footnote{The information may be good or bad and the traders may be informed or uniformed, but these details are not essential to our use of the VPIN.}
+The liquidity provider is an important player.
+At each time $t$ he holds certain beliefs $P(t) = (P_n(t), P_b(t), P_g(t))$ about whether the news affecting the informed traders was good, bad, or neutral.
+He updates his beliefs at each time interval according to the expected value of the asset:
+\begin{align*}
+  E[S_i |t] = P_n(t)S_i^* + P_b(t)\underline{S}_j + P_g(t)\overline{S}_i
+\end{align*}
+$S_i^*$ is the prior expected value of the asset.
+
+With this value, the liquidity provider can determine the expected Bid $B(t)$ and Ask $A(t)$.
+These are defined in terms of $\mu$, the proportion of informed traders, and $\varepsilon$, the proportion of uniformed traders, as follows:
+\[\begin{array}{r l}
+  B(t) = E[S_i|t] - 
+    \frac{\mu P_g(t)}{\varepsilon + \mu P_g(t)}
+    (E[S_i]
+    |t -
+    \underline{S}_j) 
+    & 
+  A(t) = E[S_i|t] + \frac{\mu P_g(t)}{\varepsilon + \mu P_g(t)}(\underline{S}_j - E[S_i|t])
+\end{array}\]
+Read these as the expected value of the asset conditional on someone wanting to buy the assert from the liquidity provider~\cite[10]{vpin}.
+
+Lastly, we have the probability $PIN$ that an order came from an informed trader. 
+This value is key to decisions:
+\begin{align*}
+  PIN = \frac{\alpha\mu}{\alpha\mu + 2\varepsilon}
+\end{align*}
+Moving forward, we understand that the market maker is continuously wary of the trades it observes.
+It constantly tries to determine whether an informed or noise trader made the order, and makes future decisions accordingly. 
+If there seem to be many traders with significant private information, invisible to the maker, it will step out of the market.
 
 
-%% TODO where does each model fall short? (maybe belongs in observations)
+
+\subsection{Comments}
+In summary, we have seen that herding does indeed exist withing both purely human and transitionary human-and-HF settings.
+Furthermore, we have discussed an array of models offering guiding insight for predicting herd behavior, each correcting an old belief or identifying a new, previously unconsidered parameter.
+We turn now towards herding in an HFT setting, describing the challenges we expect to see and our plans for addressing them.
+%% add a word on the vpin?

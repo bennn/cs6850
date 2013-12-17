@@ -1,4 +1,86 @@
-\section{Observations}
+\section{Herding in a High-Frequency Setting}
 \label{observations}
+%% What is HFT
+High-frequency trading is in-formally defined as the strategy of placing ``a large number of orders'' that can be ``rapidly canceled'' and are ``held for a short while''~\cite[2]{ahlstedt2012high}.
+Here ``a short while'' can range from a few milliseconds up-to half an hour.
+These trades happen so quickly and so frequently that in the U.S. equity markets the average holding period for a stock is 22 seconds~\cite[2]{ahlstedt2012high}.
+This means trades can occur in much more rapid succession, giving a succession of small gains the potential to accumulate into large profits.
+
 %% Our hypotheses about HFT.
-%% Should these be revised to match our results? No no no, at least not here. Maybe in the evaluation/conclusion
+For the purposes of this endeavor, we assume that herding does occur in HFT settings. 
+This assumption is reasonable given the observations of prior works; it has been shown that herding occurs in emerging high-frequency markets and the rational motivations for herding indicate that optimizing algorithms will identify and take advantage of situations where herding is likely to lead to the best outcomes~\cite{lin,boortz,bikhchandani}.
+However, it is worth mentioning that this assumption is not a given.
+
+Financial data, particularly HFT data, is valuable and difficult to come by.
+Free sources, aside from what governments demand, are practically non-existant as proprietary services run a lucrative business tracking and distributing information on exchanges.
+Yet even these suffer insufficiencies.
+For one, some markets evade collection.
+European markets are sufficiently transparent but U.S. markets are privatized, with a significant portion of trades occurring in dark-pools, and thus more difficult to get information for~\cite{beny2005insider}.
+Foreign exchange markets present a different challenge in that there is no central governing body documenting all exchanges~\cite{sarno2001official}.
+Within the Forex markets, trading occurs amongst various liquidity providers, and there aren't individual exchanges, such as the NASDAQ or Dow Jones for stocks, where these transactions are cleared.
+So our research is limited by the sources available.
+
+For data which is collected, one faces the additional problem of completeness. 
+There are varying definitions of ``high-frequency''; instead of milli- or micro- second data, some purportedly HFT sources offer data on the order of tenths of seconds or even whole seconds.
+Another issue is that quantities are not always reported alongside prices, and the buyer and seller are frequently anonymized.
+Without quantities, the interesting predictions we can do are sorely limited.
+Anonymization might not be such an issue, but traders in many cases are not even given unique identifiers.
+The data may not give a means of attributing the purchase of a few different securities to the single buyer who purchased them all.
+
+Fortunately, one member of our group had an account with Interactive Brokers and we used this account to gather our data.
+Interactive Brokers (IB) is a service providing a web interface into securities markets~\cite{ib}.
+Founded in 1977, the site ``has grown internally to become one of the premier securities firms with over \$4.8 billion in equity capital.''
+For our purposes, Interactive Brokers offered price and quantity data approximately every five milliseconds.
+This was frequent enough for our purposes, and furthermore the data associated quantity information with every price.
+Hence IB provided us a record of recent transactions and a bit of information upon which to base conjectures.
+
+That said, this data was certainly not complete.
+Though we were excited to have frequent updates and quantities, IB only provided and updated an order book: a summary of the current bids and asks.
+An order book consists of rows of the current bid and ask prices.
+These rows are ordered by price. 
+The highest bid and the lowest ask are at the top of their respective columns. 
+Associated with these prices are the quantities participants are seeking to work in.
+These quantities are not associated with individual traders but rather with the price as a whole.
+This make accounting for transactions difficult, as we cannot tell who participated in a given trade.
+An additional complication is the way in which data is reported. 
+Changes to the order book appear one at a time, in sequence.
+That is, if trader A buys $q$ units of trader B's stock at price $p$, the order book is first changed to show that the aggregate buyers are seeking to buy $q$ less stock at price $p$ and second to show that the sellers have $q$ units less to offer at price $p$.
+The transaction does not occur in one continguous step, thus making it impossible to discern market entry/exit from actual trades.
+This is a source of concern because in HFT, over 90\% of market actions are entries and exits~\cite{almgren}. 
+Unfortunately, this is a major source of inaccuracy in our analysis; we revisit this problem later.
+Furthermore, we have no means of associating one trade with a certain market participant. 
+Changes in price and quantity appear without an identifier, thus, we cannot apply the models of, for example, Park \& Sabourian or Boortz et~al., which monitor individual traders over a period of time~\cite{boortz,park2011herding}.
+
+Regardless, Interactive Brokers provided a sufficient data source for our purposes.
+Specifically, we looked at the spot EUR/USD exchange rate.
+After obtaining full access to the API and writing the initial plumbing code to interface with their quote dissemination servers, we began collecting data in early November.
+Although these early collections were admittedly sparse, they were useful for getting a general feel for our target market, which was foreign exchange currencies between the United States, Asia, and Europe.
+
+Beginning around Thanksgiving break, we switched gears and began extracting data daily and for extended periods, building weekly sets of data.
+We base our experiments and presentations in Section \ref{experiment} off one such week's worth of data, collected starting December 3.
+
+\subsection{Conjecture}
+High-frequency data differs from traditional data in that it moves much faster and it generated by precise machines, but the two still share the same underlying structure.
+At the end of the day, the objective is to make money given limited information about the market.
+Each agent has access to public information as well as their own private signal; a key objective of agent A is to learn as much as possible about the signals of the other agents so to make the most informed decision possible.
+Thus if we begin with what we know about traditional trading settings and add alterations to handle the peculiarities of HFT we can determine a predictor for price movements and, ultimately, herding.
+
+Considering traditional markets, we recall one reason participants would herd was to supplement insufficient or untrusted private information~\cite[291]{bikhchandani}.
+In other words, the participant relies more on outside data when less confident about the private signal.
+Conversely, participants who are very confident about their private signal are unlikely to herd. 
+In fact, given sufficient confidence and opportunity for profit they may make larger-than-normal trades. 
+Hence we take large-quantity trades to be an indicator of herding. 
+Applying this intuition to HFT markets, we note that the average quantity of high-frequency trades should be low.
+Trading algorithms make money by providing liquidity to other participants~\cite{guo2012high}.
+They make money through many small, low quantity trades; therefore, we expect to see a low average trade quantity in an HFT market. 
+This characteristic in mind, a large quantity trade would be quite out of the ordinary\textemdash something to take note of.
+Here we have the basis for our first conjecture regarding high-frequency data:
+
+\vspace{0.5cm}
+\hspace{1cm}  \emph{High-quantity trades significantly influence HFT price trends}
+\vspace{0.5cm}
+
+That is, we expect trading algorithms to take note of and modify their position in accordance with the high-volume, presumably-high-confidence trades.
+For an algorithm bids heavily on a particular future is an uncommon event, worth paying attention to.
+We hypothesize that traders in the HFT market will follow this decision pattern. 
+If they are at all inclined to herd, they will do so following the direction of large-quantity trades.

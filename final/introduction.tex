@@ -1,3 +1,49 @@
 \section{Introduction}
 \label{introduction}
+%% 2013-12-16: this is probably GOOD
 %% Very similar to reaction paper or topic proposal, I hope.
+Financial markets are commonly modeled by a set of independent actors who combine public and private information in order to make investments.
+Public information is, as the name suggest, freely available to all decision-makers.
+On the other hand, private information is unique to each.
+A reasonable assumption when studying trade markets is that a minimum of information sharing occurs but for the most part private information remains so.
+At no point does all private information become public, thus the market is characterized by inequality and information asymmetry, with players vying to learn their opponents' secrets.
+
+These models carry the assumption that individuals' choices are strongly guided by their private information.
+However, this assumption has been contradicted by empirical findings. 
+Numerous studies have found that investors do not always act as individuals, guided by private information, but rather exhibit a tendency for collective action.
+Participants occasionally disregard their own private signal and instead buy with the crowd.
+
+%% What is herding
+This behavior\textemdash ignoring private information and instead basing decisions off competitors' actions\textemdash is known as herding.
+Investors herd when they buy as a crowd, and a market in which this occurs is said to exhibit herd behavior.
+We are interested in identifying, classifying, and predicting herd behavior in financial markets.
+%% Why do we care
+This has a variety of applications, most notable of which is to predict the formation of bubbles and prevent their subsequent collapses. 
+Recent financial crises like the Dot-Com bubble and the Subprime Mortgage crisis provide strong motivation for controlling herd behavior.
+On a more micro scale, being able to predict when a market will herd has money-making potential for trading algorithms.
+By judiciously providing liquidity to influence herd events, and algorithm can maintain a slight edge on the market.
+
+%% Our goal
+Herd behavior in traditional commodities markets is a fairly well-studied subject.
+The earliest relevant literature dates back to the late 1980's \cite{bikhchandani}, and since then a number of experiments and theoretical models have observed and characterized the behavior.
+These results established that herding does indeed exist and offer reasonable suggestions motivating and modeling the phenomena.
+Bikchandania \& Sharma identify two main reasons why rational human investors choose to herd: for reputation and compensation purposes~\cite{bikhchandani}.
+Reputation-based herding is motivated by a trader's lack of trust in his or her private signal. 
+If the manager directing the trader to buy or sell is considered unreliable, the individual on the trading floor may follow his competitors for lack of better alternatives.
+Compensation-based herding is motivated by a fear of doing poorly on the trade floor. 
+Bikchandani and Sharma observe that when a trader's compensation is tied to his or her performance, they will buy with the crowd because this is seen as the ``safe'' move. 
+Instead of using private information and making a risky, though potentially profitable investment, they hedge bets with the market.
+Additionally, the authors separate the notion of ``spurious'' herding, where investors facing similar constraints happen upon the same decision~\cite[281]{bikhchandani}.
+At any rate, there have been sophisticated advances in the study of herding in traditional markets.
+We will recount a few of these in Section \ref{background}.
+
+However, high-frequency trading (HFT) has revolutionized financial markets, and historical models may no longer apply.
+At the very least, the time is ripe for new models which are specifically tailored to predict herding in a high-frequency setting.
+While there is some literature on herding in HFT markets, it is relatively little and not quite as in-depth as past work on herding in traditional markets has been.
+Our goal in this class has been to analyze the presence, significance, and implications of herd behavior in an HTF setting.
+
+This paper is outlined as follows: Section \ref{background} gives more historical information and recounts the studies we found relevant to our work.
+In Section \ref{observations}, we talk about the challenges and peculiarities we forsee in HFT markets.
+That is, we give a high-level description of our intuitions regarding herding in high-frequency markets.
+Section \ref{experiment} contains the main part of this work, introducing our data source and documenting our experiments.
+Finally we conclude in Section \ref{conclusion} with a final overview of where we have come.

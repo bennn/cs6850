@@ -1,0 +1,24 @@
+\begin{figure}
+  \begin{center}
+  \begin{tikzpicture}
+    \node [draw,circle] (1) {$r$};
+    \node [draw,circle,below left of=1,yshift=-.1cm] (2) {$A$};
+    \node [draw,circle,below left of=2] (3) {$A$};
+    \node [draw,circle,below left of=3] (4) {$A$};
+    \node [draw,circle,below right of=3] (5) {$B$};
+    
+    \node[draw,circle,below of=1] (6) {$0$};
+    \node[draw,circle,below right of=1] (7) {$B$};
+
+    \draw[->] (1) -- (2);
+    \draw[->] (1) -- (6);
+    \draw[->] (1) -- (7);
+    \draw[->] (2) -- (3);
+    \draw[->] (3) -- (4);
+    \draw[->] (3) -- (5);
+
+  \end{tikzpicture}
+  \end{center}
+  \caption{Example prefix tree, constructed from sequence  $\{ A, A, A, 0, B, A, A, B\}$}
+  \label{prefix-example}
+\end{figure}

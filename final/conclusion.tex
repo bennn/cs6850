@@ -1,2 +1,25 @@
-\section{Conclusion and Future Work}
+\section{Conclusion}%% and Future Work}
 \label{conclusion}
+%% TODO could use more words
+%% the heck did we learn?
+The study of financial markets and their intricacies is an intense and challenging area of study.
+Data is fiercely guarded, sold at a premium, and moves quickly.
+If not on guard continuously, significant yet subtle patterns can easily escape detection.
+
+We attempted a disciplined study of financial markets, trying to characterize and predict herd behavior in an HFT setting.
+To this end we gathered weeks' worth of order book data and attempted fitting it to a few hypotheses and analysis techniques.
+Being able to predict herd behavior in HFT setting is certainly an interesting question, and we maintain that there must be some rational explanation for it, but we have not uncovered it.
+Collecting data, as noted above, was a challenge in itself.
+However, even when we had enough information to begin running experiments we met almost perpetual confusion and disappointment. 
+Pronounced herd behavior does not take place on a daily basis.
+Intra-day trends take a more nuanced form and are harder to describe, much less to separate from noise.
+We attempted to correct this by examining data over the course of a week, but still no clear patterns emerged.
+This effort was perhaps foiled by our dataset having price information three separate markets: American, Asian, and European.
+Regardless, and although our intuitions were strong and based upon published and accepted findings for traditional markets, our results were not supportive of our hypotheses.
+
+While we were unable to get a future predictor for herding behavior, we identified bid/ask quantity to be an important driver in the behavior of future market price and liquidity.
+By using the VPIN model as a foundation, we were able to draw insightful conclusions from our dataset and identify a strategy for predicting the increase in volatility of
+future price movements that occur as a result of liquidity providers exiting the market
+after having observed herd behavior which was started by an influx of informed traders.
+
+Hence we come away from this project with valuable experience working with securities data and attempting to build models and find patterns in confusing data.
